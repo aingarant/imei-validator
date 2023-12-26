@@ -39,7 +39,7 @@ const Form = () => {
       const checkDigit = calculateCheckDigit(value)
       setImei(Number(value + checkDigit))
       setError(false)
-      setValidated(null)
+      setValidated(Number(value + checkDigit))
       setMessage("Valid IMEI")
       return
     }
@@ -54,7 +54,7 @@ const Form = () => {
         return setMessage("IMEI is not valid")
       }
       setImei(value)
-      setValidated(null)
+      setValidated(value)
       setError(false)
       setMessage("Valid IMEI")
     }
@@ -97,20 +97,28 @@ const Form = () => {
       </div>
 
       {validated && (
-        <p className="text-green-500 text-center font-bold">
-          Validated IMEI: {validated}
-        </p>
+        <>
+          <p className="text-green-500 text-center font-bold mt-16">
+            Validated IMEI: {validated}
+          </p>
+
+          <p className="text-center">
+            <a href={`https://www.imei.info/?imei=${validated}`}>
+              Click for IMEI details
+            </a>
+          </p>
+        </>
       )}
       <input
         type="number"
         ref={inputRef}
-        className="p-2 text-black text-center rounded-sm"
+        className="p-2 text-black text-center rounded-sm mt-16"
       />
       <button
         type="submit"
         className="bg-blue-500 text-white p-2 px-3 mx-2 rounded-md"
       >
-        Submit
+        Validate
       </button>
     </form>
   )
