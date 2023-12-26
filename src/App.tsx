@@ -110,7 +110,7 @@ const Form = () => {
         </>
       )}
       <input
-        type="number"
+        type="text"
         ref={inputRef}
         className="p-2 text-black text-center rounded-sm mt-16"
       />
